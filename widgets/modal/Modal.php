@@ -1,6 +1,6 @@
 <?php
-namespace modal;
 
+namespace app\widgets\modal;
 
 
 class Modal extends \yii\bootstrap\Modal

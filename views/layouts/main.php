@@ -4,6 +4,7 @@
 /* @var $content string */
 
 use app\widgets\Alert;
+use app\widgets\modal\Modal;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -75,7 +76,7 @@ AppAsset::register($this);
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
-
+<?= Modal::widget(['id' => 'main-modal', 'size' => Modal::SIZE_LARGE]); ?>
 <?php $this->endBody() ?>
 </body>
 </html>
