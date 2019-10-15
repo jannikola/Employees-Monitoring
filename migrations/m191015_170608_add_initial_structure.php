@@ -19,7 +19,7 @@ class m191015_170608_add_initial_structure extends Migration
             'created_by' => $this->integer(),
             'updated_at' => $this->integer(),
             'updated_by' => $this->integer(),
-            'is_deleted' => $this->integer(),
+            'is_deleted' => $this->integer()->defaultValue(0),
         ]);
 
         $this->createTable('employee', [
@@ -30,7 +30,7 @@ class m191015_170608_add_initial_structure extends Migration
             'created_by' => $this->integer(),
             'updated_at' => $this->integer(),
             'updated_by' => $this->integer(),
-            'is_deleted' => $this->integer(),
+            'is_deleted' => $this->integer()->defaultValue(0),
         ]);
 
         $this->createTable('arrival', [
@@ -43,7 +43,7 @@ class m191015_170608_add_initial_structure extends Migration
             'created_by' => $this->integer(),
             'updated_at' => $this->integer(),
             'updated_by' => $this->integer(),
-            'is_deleted' => $this->integer(),
+            'is_deleted' => $this->integer()->defaultValue(0),
         ]);
 
         $this->addForeignKey('fk_arrival_employee', 'arrival', 'employee_id', 'employee', 'id');
