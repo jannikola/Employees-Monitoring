@@ -1,0 +1,64 @@
+.modal-dialog .btn-modal-control-minimise {
+    display: none;
+    float: right;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .6;
+    -webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    margin-right: 5px;
+    margin-top: 2px;
+}
+
+.modal-full-screen .btn-modal-control-minimise {
+    display: inline-block;
+}
+
+.modal-dialog .btn-modal-control-expand {
+    display: inline-block;
+    float: right;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+    color: #000;
+    opacity: .6;
+    -webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    margin-right: 5px;
+    margin-top: 2px;
+}
+
+.modal-full-screen {
+    width: 100%;
+    margin: 0;
+}
+
+.modal-full-screen .modal-content {
+    height: 100%;
+}
+
+.modal-full-screen .btn-modal-control-expand {
+    display: none;
+}
+
+.modal-full-screen .col-lg-6 {
+    width: 33.33333%;
+}
+
+.modal-full-screen .col-lg-offset-6 {
+    margin-left: 67.33333%;
+}
+
+@media (min-width: 1400px) {
+    .modal-xlg { width: 1200px; }
+}

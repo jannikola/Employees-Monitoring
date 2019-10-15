@@ -3,7 +3,7 @@
 namespace components\orm;
 
 
-use helpers\ArrayHelper;
+use app\helpers\ArrayHelper;
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 
