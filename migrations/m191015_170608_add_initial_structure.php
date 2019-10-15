@@ -14,6 +14,7 @@ class m191015_170608_add_initial_structure extends Migration
             'id' => $this->primaryKey(),
             'username' => $this->string(255)->notNull(),
             'email' => $this->string(255)->notNull(),
+            'password_hash' => $this->string(255)->notNull(),
             'created_at' => $this->integer(),
             'created_by' => $this->integer(),
             'updated_at' => $this->integer(),
@@ -52,7 +53,7 @@ class m191015_170608_add_initial_structure extends Migration
     public function safeDown()
     {
         $this->dropForeignKey('fk_arrival_employee', 'arrival');
-        
+
         $this->dropTable('arrival');
         $this->dropTable('employee');
         $this->dropTable('user');
