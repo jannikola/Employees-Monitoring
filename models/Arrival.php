@@ -1,0 +1,28 @@
+<?php
+/**
+ * Created by Nikola Jankovic.
+ * email: jannikola@gmail.com
+ */
+
+namespace app\models;
+
+
+use app\components\orm\ActiveRecord;
+
+class Arrival extends ActiveRecord
+{
+    public static function tableName()
+    {
+        return 'arrival';
+    }
+
+    public function rules()
+    {
+        return [
+            [['employee_id', 'date', 'time', 'is_late'], 'required'],
+            [['created_at', 'created_by', 'updated_at', 'updated_by', 'is_deleted'], 'integer'],
+        ];
+    }
+
+
+}
