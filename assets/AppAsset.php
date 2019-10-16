@@ -24,7 +24,8 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
 //        'js/modal.js'
-        'datetime-picker.js'
+        'js/datetime-picker.js',
+        'js/main.ui.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

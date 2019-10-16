@@ -11,6 +11,7 @@
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 use app\components\grid\GridView;
+use app\models\Employee;
 use yii\bootstrap\Html;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
@@ -61,7 +62,7 @@ $pjaxId = 'employee-pjax-id';
                             'data-placement' => 'top'
                         ]);
                     },
-                    'delete' => function ($url, $model) use ($pjaxId) {
+                    'delete' => function ($url, Employee $model) use ($pjaxId) {
                         $url = Url::to(['employee/delete', 'id' => $model->id]);
                         return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
                             'title' => 'Delete',
@@ -69,8 +70,8 @@ $pjaxId = 'employee-pjax-id';
                             'data-pjax-id' => $pjaxId,
                             'data-json-response' => '1',
                             'data-method' => 'post',
-                            'data-msg' => Yii::t('app', 'Do you want to delete {:name}?', [':name' => $model->first_name]),
-                            'class' => 'btn btn-sm delete-button btn-control-confirm',
+                            'data-msg' => Yii::t('app', 'Do you want to delete {:name}?', [':name' => $model->getFullName()]),
+                            'class' => 'btn btn-sm btn-icon-only rounded-circle delete-button btn-control-confirm',
                             'data-toggle' => 'tooltip',
                             'data-placement' => 'top'
                         ]);
