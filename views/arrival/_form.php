@@ -4,7 +4,10 @@
  * email: jannikola@gmail.com
  */
 
-use yii\bootstrap\ActiveForm; ?>
+use app\helpers\EmployeeHelper;
+use dosamigos\select2\Select2;
+use yii\bootstrap\ActiveForm;
+?>
 
 <div>
     <?php $form = ActiveForm::begin([
@@ -13,9 +16,16 @@ use yii\bootstrap\ActiveForm; ?>
         'options' => ['enctype' => 'multipart/form-data', 'data-grid-id' => 'arrival-pjax-id'],
     ]); ?>
 
-    <?= $form->field($model, 'employee_id', [
-        'inputOptions' => ['placeholder' => Yii::t('app', 'Add name')],
-    ])->textInput() ?>
+    <?= $form->field($model, 'employee_id',[
+            'template' => '<div class="row"><div class="col-md-12" >{input}{error}</div></div>'
+        ])->widget(
+            Select2::class, [
+                'items' => EmployeeHelper::getEmployees(),
+                'clientOptions' => [
+                    'placeholder' => 'Choose Employee'
+                ]
+            ]
+        )->label(false);?>
 
     <?= $form->field($model, 'date', [
         'inputOptions' => ['placeholder' => Yii::t('app', 'Add last name')],
