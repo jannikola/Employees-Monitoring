@@ -21,7 +21,7 @@ $pjaxId = 'employee-pjax-id';
 
 <?= Html::a('New',
     ['create'],
-    ['class' => 'btn pull-right btn-modal-control']);
+    ['class' => 'btn btn-primary pull-right btn-modal-control']);
 ?>
 <?php Pjax::begin(['id' => $pjaxId]); ?>
 <?= GridView::widget([
@@ -55,6 +55,7 @@ $pjaxId = 'employee-pjax-id';
                         $url = Url::to(['employee/update', 'id' => $model->id]);
                         return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
                             'title' => 'Update',
+                            'data-pjax' => '0',
                             'class' => 'btn btn-sm btn-modal-control',
                             'data-toggle' => 'tooltip',
                             'data-placement' => 'top'

@@ -9,6 +9,20 @@ namespace app\models;
 
 use app\components\orm\ActiveRecord;
 
+/**
+ * Arrival model
+ *
+ * @property integer $id
+ * @property integer $date
+ * @property integer $time
+ * @property integer $is_late
+ * @property integer $created_at
+ * @property integer $updated_at
+ * @property integer $created_by
+ * @property integer $updated_by
+ * @property integer $is_deleted
+ */
+
 class Arrival extends ActiveRecord
 {
     public static function tableName()
@@ -22,6 +36,11 @@ class Arrival extends ActiveRecord
             [['employee_id', 'date', 'time', 'is_late'], 'required'],
             [['created_at', 'created_by', 'updated_at', 'updated_by', 'is_deleted'], 'integer'],
         ];
+    }
+
+    public function getEmployee()
+    {
+        return $this->hasOne(Employee::class, ['employee_id' => 'id']);
     }
 
 

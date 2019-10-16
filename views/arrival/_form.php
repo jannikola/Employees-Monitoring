@@ -28,17 +28,28 @@ use yii\bootstrap\ActiveForm;
         )->label(false);?>
 
     <?= $form->field($model, 'date', [
-        'inputOptions' => ['placeholder' => Yii::t('app', 'Add last name')],
+        'inputOptions' => ['placeholder' => Yii::t('app', 'Date')],
     ])->textInput() ?>
 
     <?= $form->field($model, 'time', [
-        'inputOptions' => ['placeholder' => Yii::t('app', 'Add last name')],
+        'inputOptions' => [
+                'placeholder' => Yii::t('app', 'Time'),
+                'class' => 'ipt-clock'
+        ],
     ])->textInput() ?>
 
     <?= $form->field($model, 'is_late', [
-        'inputOptions' => ['placeholder' => Yii::t('app', 'Add last name')],
+        'inputOptions' => ['placeholder' => Yii::t('app', 'Is late?')],
     ])->textInput() ?>
 
 
     <?php ActiveForm::end(); ?>
 </div>
+
+<?php $this->registerJs(<<<JS
+
+   $('.ipt-clock').datetimepicker({
+                format: 'LT'
+            });
+JS
+);

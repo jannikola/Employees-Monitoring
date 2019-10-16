@@ -10,6 +10,7 @@
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 use app\components\grid\GridView;
+use app\models\Arrival;
 use yii\bootstrap\Html;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
@@ -20,7 +21,7 @@ $pjaxId = 'arrival-pjax-id';
 
 <?= Html::a('New',
     ['create'],
-    ['class' => 'btn pull-right btn-modal-control']);
+    ['class' => 'btn btn-primary pull-right btn-modal-control']);
 ?>
 <?php Pjax::begin(['id' => $pjaxId]); ?>
 <?= GridView::widget([
@@ -53,6 +54,9 @@ $pjaxId = 'arrival-pjax-id';
         [
             'attribute' => 'is_late',
             'label' => Yii::t('app', 'Is late'),
+            'value' => function(Arrival $model) {
+                return $model->is_late ? 'Yes' : 'No';
+            },
         ],
         ['class' => 'yii\grid\ActionColumn',
             'template' => '<div class="pull-right">{update}{delete}</div>',
