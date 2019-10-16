@@ -48,6 +48,13 @@ $pjaxId = 'employee-pjax-id';
             'attribute' => 'last_name',
             'label' => Yii::t('app', 'Last Name'),
         ],
+        [
+            'attribute' => 'lateArrivalsCount',
+            'label' => Yii::t('app', 'Late Arrivals'),
+            'value' => function (Employee $model) {
+                return $model->getEmployeeLateArrivalsCount();
+            },
+        ],
         ['class' => 'yii\grid\ActionColumn',
             'template' => '<div class="pull-right">{update}{delete}</div>',
             'buttons' =>

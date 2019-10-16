@@ -24,6 +24,7 @@ use app\components\orm\ActiveRecord;
 
 class Employee extends ActiveRecord
 {
+    public $lateArrivalsCount;
 
     public static function tableName()
     {
@@ -41,6 +42,11 @@ class Employee extends ActiveRecord
     public function getFullName()
     {
         return $this->first_name . $this->last_name;
+    }
+
+    public function getEmployeeLateArrivalsCount()
+    {
+        return Arrival::find()->select(['is_late'])->andFilterWhere(['employee_id' => $this->id])->andFilterWhere(['is_late' => 1])->count();
     }
 
 }
