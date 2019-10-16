@@ -24,11 +24,11 @@ class EmployeeController extends CrudController
                 'access' => [
                     'class' => AccessControl::class,
                     'rules' => [
-                        [
-                            'actions' => ['index', 'create', 'update', 'delete'],
-                            'allow' => true,
+//                        [
+//                            'actions' => ['index', 'create', 'update', 'delete'],
+//                            'allow' => true,
 //                            'roles' => ['?'],
-                        ],
+//                        ],
                         [
                             'allow' => true,
                             'roles' => ['?']

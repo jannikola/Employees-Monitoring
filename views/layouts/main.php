@@ -76,7 +76,7 @@ AppAsset::register($this);
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
-<?= Modal::widget(['id' => 'main-modal', 'size' => Modal::SIZE_LARGE]); ?>
+<?= Modal::widget(['id' => 'main-modal', 'size' => Modal::SIZE_DEFAULT]); ?>
 <?php $this->endBody() ?>
 </body>
 </html>

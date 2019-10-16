@@ -28,7 +28,7 @@ $pjaxId = 'employee-pjax-id';
     'pjaxId' => $pjaxId,
     'onAfterPjaxReload' => new yii\web\JsExpression("function() {
                         $.pjax.reload({
-                            container:'#yearPjaxCleaning',
+                            container:'#{$pjaxId}',
                             push: false,
                             replace: false,
                             timeout: 10000
@@ -53,18 +53,26 @@ $pjaxId = 'employee-pjax-id';
                 [
                     'update' => function ($url, $model) {
                         $url = Url::to(['employee/update', 'id' => $model->id]);
-                        return Html::a('<i class="fal fa-wrench"></i>', $url, ['title' => \Yii::t('app', 'Update'), 'class' => 'btn btn-sm btn-icon-only rounded-circle btn-modal-control', 'data-toggle' => 'tooltip', 'data-placement' => 'top']);
+                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                            'title' => 'Update',
+                            'class' => 'btn btn-sm btn-modal-control',
+                            'data-toggle' => 'tooltip',
+                            'data-placement' => 'top'
+                        ]);
                     },
                     'delete' => function ($url, $model) use ($pjaxId) {
                         $url = Url::to(['employee/delete', 'id' => $model->id]);
-                        return Html::a('<i class="fal fa-trash"></i>', $url, ['title' => \Yii::t('app', 'Delete'),
+                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
+                            'title' => 'Delete',
                             'data-pjax' => '0',
                             'data-pjax-id' => $pjaxId,
                             'data-json-response' => '1',
+                            'data-method' => 'post',
                             'data-msg' => Yii::t('app', 'Do you want to delete {:name}?', [':name' => $model->first_name]),
-                            'class' => 'btn btn-sm btn-icon-only rounded-circle delete-button btn-control-confirm',
+                            'class' => 'btn btn-sm delete-button btn-control-confirm',
                             'data-toggle' => 'tooltip',
-                            'data-placement' => 'top']);
+                            'data-placement' => 'top'
+                        ]);
                     },
                 ],
         ],

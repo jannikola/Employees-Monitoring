@@ -7,7 +7,7 @@ use yii\bootstrap\ActiveForm; ?>
     <?php $form = ActiveForm::begin([
         'id' => $model->getFormId(),
         'action' => $model->isNewRecord ? ['employee/create'] : ['employee/update', 'id' => $model->id],
-        'options' => ['enctype' => 'multipart/form-data', 'data-grid-id' => 'cleaning-pjax-id'],
+        'options' => ['enctype' => 'multipart/form-data', 'data-grid-id' => 'employee-pjax-id'],
     ]); ?>
 
     <?= $form->field($model, 'first_name', [
