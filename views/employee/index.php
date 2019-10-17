@@ -17,7 +17,8 @@ use yii\helpers\Url;
 use yii\widgets\Pjax;
 
 $pjaxId = 'employee-pjax-id';
-
+$this->title = 'Employees';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?= Html::a('New',

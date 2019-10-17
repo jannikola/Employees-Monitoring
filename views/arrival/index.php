@@ -17,7 +17,8 @@ use yii\helpers\Url;
 use yii\widgets\Pjax;
 
 $pjaxId = 'arrival-pjax-id';
-
+$this->title = 'Arrivals';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?= Html::a('New',
