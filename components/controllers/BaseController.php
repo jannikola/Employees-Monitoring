@@ -3,41 +3,14 @@
 namespace app\components\controllers;
 
 use app\components\orm\ActiveRecord;
-use app\helpers\ArrayHelper;
 use Yii;
 use yii\web\NotFoundHttpException;
-use yii\filters\AccessControl;
 
 class BaseController extends \yii\web\Controller
 {
-    /** @var string */
+    /* @var string */
     public $modelClass;
     public $searchModelClass;
-
-    public function behaviors()
-    {
-        $behaviors = [
-            'access' => [
-                'class' => AccessControl::class,
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['?'],
-                    ]
-                ],
-            ],
-        ];
-
-        return ArrayHelper::merge(
-            $behaviors,
-            $this->extendedBehaviors()
-        );
-    }
-
-    public function extendedBehaviors()
-    {
-        return [];
-    }
 
     public function init()
     {
@@ -96,10 +69,10 @@ class BaseController extends \yii\web\Controller
      */
     protected function findModel($id)
     {
-        /** @var ActiveRecord $modelClass */
+        /* @var ActiveRecord $modelClass */
         $modelClass = $this->modelClass;
 
-        /** @var $model ActiveRecord */
+        /* @var $model ActiveRecord */
         if (($model = $modelClass::findOne($id)) === null) {
             throw new NotFoundHttpException('The requested page does not exist.');
         }

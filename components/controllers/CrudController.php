@@ -18,31 +18,6 @@ use app\components\actions\DeleteAction;
 class CrudController extends BaseController
 {
 
-    public function extendedBehaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::class,
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-            'access' => [
-                'class' => AccessControl::class,
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                    [
-                        'allow' => true,
-                        'roles' => ['?'],
-                    ]
-                ],
-            ],
-        ];
-    }
-
     public function actions()
     {
         /* @var $modelClass \app\components\orm\ActiveRecord */
@@ -77,8 +52,10 @@ class CrudController extends BaseController
         ], $this->extendedActions());
     }
 
-    public function extendedActions() {
+    public function extendedActions()
+    {
         return [];
     }
+
 
 }

@@ -41,10 +41,10 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Employees', 'url' => ['/employee/index']],
-            ['label' => 'Arrivals', 'url' => ['/arrival/index']],
+            ['label' => 'Employees', 'url' => ['/employee/index'], 'visible' => !Yii::$app->user->isGuest],
+            ['label' => 'Arrivals', 'url' => ['/arrival/index'], 'visible' => !Yii::$app->user->isGuest],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+            ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
