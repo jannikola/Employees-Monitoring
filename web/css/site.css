@@ -3,6 +3,10 @@ body {
     height: 100%;
 }
 
+.modal-header > h4 {
+    display: inline !important;
+}
+
 .wrap {
     min-height: 100%;
     height: auto;
