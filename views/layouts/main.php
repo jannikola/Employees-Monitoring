@@ -11,6 +11,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
+$this->title = 'Employee Control';
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
