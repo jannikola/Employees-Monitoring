@@ -102,8 +102,6 @@ class CreateAction extends ItemAction
 
         $params = $this->resolveParams(['model' => $model]);
 
-//        var_dump('cao cao');die();
-
         return $this->controller->renderAjax($this->modalView, $params);
     }
 

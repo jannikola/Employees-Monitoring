@@ -27,7 +27,7 @@ class EmployeeSearch extends Employee
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSizeLimit' => [10, 200]
+                'pageSizeLimit' => [10, 10]
             ],
         ]);
 
