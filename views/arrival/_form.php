@@ -35,9 +35,8 @@ use yii\bootstrap\ActiveForm;
 
 
         <?=$form->field($model, 'time')->widget(TimePicker::class, [
-            //'language' => 'fi',
             'pluginOptions' => [
-                'showSeconds' => true
+                'showMeridian' => false,
             ]
         ]); ?>
 
