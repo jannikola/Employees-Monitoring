@@ -27,16 +27,6 @@ $pjaxId = 'arrival-pjax-id';
 <?php Pjax::begin(['id' => $pjaxId]); ?>
 <?= GridView::widget([
     'pjaxId' => $pjaxId,
-    'onAfterPjaxReload' => new yii\web\JsExpression("function() {
-                        $.pjax.reload({
-                            container:'#{$pjaxId}',
-                            push: false,
-                            replace: false,
-                            timeout: 10000
-                        });
-
-                        $('#" . $pjaxId . "').off('pjax:complete');
-                    }"),
     'showFooter' => true,
     'dataProvider' => $dataProvider,
     'columns' => [

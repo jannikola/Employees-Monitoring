@@ -11,7 +11,7 @@
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 use app\components\grid\GridView;
-use app\models\Employee;
+use app\models\Arrival;
 use yii\bootstrap\Html;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
@@ -27,40 +27,27 @@ $pjaxId = 'employee-pjax-id';
 <?php Pjax::begin(['id' => $pjaxId]); ?>
 <?= GridView::widget([
     'pjaxId' => $pjaxId,
-    'onAfterPjaxReload' => new yii\web\JsExpression("function() {
-                        $.pjax.reload({
-                            container:'#{$pjaxId}',
-                            push: false,
-                            replace: false,
-                            timeout: 10000
-                        });
-
-                        $('#" . $pjaxId . "').off('pjax:complete');
-                    }"),
     'showFooter' => true,
     'dataProvider' => $dataProvider,
     'columns' => [
         [
-            'attribute' => 'first_name',
-            'label' => Yii::t('app', 'Name'),
+            'attribute' => 'employee.first_name',
+            'label' => Yii::t('app', 'First Name'),
         ],
         [
-            'attribute' => 'last_name',
+            'attribute' => 'employee.last_name',
             'label' => Yii::t('app', 'Last Name'),
         ],
         [
-            'attribute' => 'lateArrivalsCount',
-            'label' => Yii::t('app', 'Late Arrivals'),
-            'value' => function (Employee $model) {
-                return $model->getEmployeeLateArrivalsCount();
-            },
+            'attribute' => 'is_late',
+            'label' => Yii::t('app', 'Late Arrivals')
         ],
         ['class' => 'yii\grid\ActionColumn',
             'template' => '<div class="pull-right">{update}{delete}</div>',
             'buttons' =>
                 [
-                    'update' => function ($url, $model) {
-                        $url = Url::to(['employee/update', 'id' => $model->id]);
+                    'update' => function ($url, Arrival $model) {
+                        $url = Url::to(['employee/update', 'id' => $model->employee_id]);
                         return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
                             'title' => 'Update',
                             'data-pjax' => '0',
@@ -69,15 +56,15 @@ $pjaxId = 'employee-pjax-id';
                             'data-placement' => 'top'
                         ]);
                     },
-                    'delete' => function ($url, Employee $model) use ($pjaxId) {
-                        $url = Url::to(['employee/delete', 'id' => $model->id]);
+                    'delete' => function ($url, Arrival $model) use ($pjaxId) {
+                        $url = Url::to(['employee/delete', 'id' => $model->employee_id]);
                         return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
                             'title' => 'Delete',
                             'data-pjax' => '0',
                             'data-pjax-id' => $pjaxId,
                             'data-json-response' => '1',
                             'data-method' => 'post',
-                            'data-msg' => Yii::t('app', 'Do you want to delete {:name}?', [':name' => $model->getFullName()]),
+                            'data-msg' => Yii::t('app', 'Do you want to delete {:name}?', [':name' => $model->employee->getFullName()]),
                             'class' => 'btn btn-sm btn-icon-only rounded-circle delete-button btn-control-confirm',
                             'data-toggle' => 'tooltip',
                             'data-placement' => 'top'
@@ -90,3 +77,4 @@ $pjaxId = 'employee-pjax-id';
 
 ?>
 <?php Pjax::end(); ?>
+

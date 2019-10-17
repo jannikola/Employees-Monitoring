@@ -17,7 +17,6 @@ class GridView extends \yii\grid\GridView
     public $tableOptions = ['class' => 'table align-items-center table-flush table-responsive'];
     public $headerRowOptions = ['class' => 'thead-light'];
     public $layout = "{items}\n{pager}";
-    public $onAfterPjaxReload = '';
 
     /**
      * Runs the widget.
@@ -28,11 +27,6 @@ class GridView extends \yii\grid\GridView
         if ($this->pjaxId) {
             $view = $this->getView();
 
-            $afterPjax = '';
-//            if($this->onAfterPjaxReload) {
-//                $afterPjax = "$('#{$this->pjaxId}').on('pjax:complete', {$this->onAfterPjaxReload});";
-//            }
-
             $view->registerJs("$(document).on('modal-submitted', function(event, data, status, xhr, options) {
                 if (data.success) { 
                         $.pjax.reload({
@@ -41,8 +35,6 @@ class GridView extends \yii\grid\GridView
                             replace: false, 
                             timeout: 10000
                         });
-                    
-                    {$afterPjax}
                 }
             });");
         }

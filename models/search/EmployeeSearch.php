@@ -2,8 +2,10 @@
 
 namespace app\models\search;
 
+use app\models\Arrival;
 use app\models\Employee;
 use yii\data\ActiveDataProvider;
+use yii\db\Expression;
 
 /**
  * Created by Nikola Jankovic.
@@ -22,13 +24,35 @@ class EmployeeSearch extends Employee
 
     public function search($params)
     {
-        $query = Employee::find();
+        $query = Arrival::find()
+            ->select(['employee_id', 'is_late' => new Expression("COUNT(is_late)")])
+            ->innerJoinWith('employee');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
                 'pageSizeLimit' => [10, 10]
             ],
+            'sort' => [
+                'defaultOrder' => [
+                    "is_late" => SORT_DESC
+                ],
+                'attributes' => [
+                    'id',
+                    'employee.first_name' => [
+                        'asc' => ['employee.first_name' => SORT_ASC],
+                        'desc' => ['employee.first_name' => SORT_DESC]
+                    ],
+                    'employee.last_name' => [
+                        'asc' => ['employee.last_name' => SORT_ASC],
+                        'desc' => ['employee.last_name' => SORT_DESC]
+                    ],
+                    'is_late' => [
+                        'asc' => ["COUNT(is_late)" => SORT_ASC],
+                        'desc' => ["COUNT(is_late)" => SORT_DESC]
+                    ]
+                ]
+            ]
         ]);
 
         $this->load($params);
@@ -36,6 +60,8 @@ class EmployeeSearch extends Employee
         if (!$this->validate()) {
             return $dataProvider;
         }
+
+        $query->groupBy(['employee_id']);
 
         return $dataProvider;
     }

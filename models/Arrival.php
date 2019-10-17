@@ -21,6 +21,8 @@ use app\components\orm\ActiveRecord;
  * @property integer $created_by
  * @property integer $updated_by
  * @property integer $is_deleted
+ *
+ * @property Employee $employee
  */
 
 class Arrival extends ActiveRecord
@@ -40,7 +42,7 @@ class Arrival extends ActiveRecord
 
     public function getEmployee()
     {
-        return $this->hasOne(Employee::class, ['employee_id' => 'id']);
+        return $this->hasOne(Employee::class, ['id' => 'employee_id']);
     }
 
 //    public function beforeSave($insert)
