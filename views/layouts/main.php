@@ -11,7 +11,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
-$this->title = 'Employee Monitoringv';
+$this->title = 'Employee Monitoring';
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
