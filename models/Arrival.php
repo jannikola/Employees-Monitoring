@@ -24,7 +24,6 @@ use app\components\orm\ActiveRecord;
  *
  * @property Employee $employee
  */
-
 class Arrival extends ActiveRecord
 {
     public static function tableName()
@@ -45,11 +44,11 @@ class Arrival extends ActiveRecord
         return $this->hasOne(Employee::class, ['id' => 'employee_id']);
     }
 
-//    public function beforeSave($insert)
-//    {
-//        $this->date = time();
-//        $this->is_late = $this->time > 8 ? 1 : 0;
-//    }
+
+    public function init()
+    {
+        $this->date = date('Y-m-d');
+    }
 
 
 }

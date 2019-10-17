@@ -29,11 +29,6 @@ use yii\bootstrap\ActiveForm;
             ]
         )->label(false); ?>
 
-        <?= $form->field($model, 'date', [
-            'inputOptions' => ['placeholder' => Yii::t('app', 'Date')],
-        ])->textInput() ?>
-
-
         <?=$form->field($model, 'time')->widget(TimePicker::class, [
             'pluginOptions' => [
                 'showMeridian' => false,
