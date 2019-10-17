@@ -43,5 +43,11 @@ class Arrival extends ActiveRecord
         return $this->hasOne(Employee::class, ['employee_id' => 'id']);
     }
 
+//    public function beforeSave($insert)
+//    {
+//        $this->date = time();
+//        $this->is_late = $this->time > 8 ? 1 : 0;
+//    }
+
 
 }

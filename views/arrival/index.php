@@ -11,6 +11,7 @@
 
 use app\components\grid\GridView;
 use app\models\Arrival;
+use janisto\timepicker\TimePicker;
 use yii\bootstrap\Html;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
@@ -66,6 +67,7 @@ $pjaxId = 'arrival-pjax-id';
                         $url = Url::to(['arrival/update', 'id' => $model->id]);
                         return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
                             'title' => 'Update',
+                            'data-pjax' => '0',
                             'class' => 'btn btn-sm btn-modal-control',
                             'data-toggle' => 'tooltip',
                             'data-placement' => 'top'

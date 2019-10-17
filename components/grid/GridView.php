@@ -29,9 +29,9 @@ class GridView extends \yii\grid\GridView
             $view = $this->getView();
 
             $afterPjax = '';
-            if($this->onAfterPjaxReload) {
-                $afterPjax = "$('#{$this->pjaxId}').on('pjax:complete', {$this->onAfterPjaxReload});";
-            }
+//            if($this->onAfterPjaxReload) {
+//                $afterPjax = "$('#{$this->pjaxId}').on('pjax:complete', {$this->onAfterPjaxReload});";
+//            }
 
             $view->registerJs("$(document).on('modal-submitted', function(event, data, status, xhr, options) {
                 if (data.success) { 

@@ -23,9 +23,10 @@ class AppAsset extends AssetBundle
         'css/site.css',
     ];
     public $js = [
-//        'js/modal.js'
-        'js/datetime-picker.js',
+//        'js/moment.min.js',
+//        'js/datetime-picker.js',
         'js/main.ui.js',
+//        'js/modal.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

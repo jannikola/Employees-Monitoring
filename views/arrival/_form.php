@@ -6,17 +6,19 @@
 
 use app\helpers\EmployeeHelper;
 use dosamigos\select2\Select2;
+use kartik\time\TimePicker;
 use yii\bootstrap\ActiveForm;
+
 ?>
 
-<div>
-    <?php $form = ActiveForm::begin([
-        'id' => $model->getFormId(),
-        'action' => $model->isNewRecord ? ['arrival/create'] : ['arrival/update', 'id' => $model->id],
-        'options' => ['enctype' => 'multipart/form-data', 'data-grid-id' => 'arrival-pjax-id'],
-    ]); ?>
+    <div>
+        <?php $form = ActiveForm::begin([
+            'id' => $model->getFormId(),
+            'action' => $model->isNewRecord ? ['arrival/create'] : ['arrival/update', 'id' => $model->id],
+            'options' => ['enctype' => 'multipart/form-data', 'data-grid-id' => 'arrival-pjax-id'],
+        ]); ?>
 
-    <?= $form->field($model, 'employee_id',[
+        <?= $form->field($model, 'employee_id', [
             'template' => '<div class="row"><div class="col-md-12" >{input}{error}</div></div>'
         ])->widget(
             Select2::class, [
@@ -25,31 +27,24 @@ use yii\bootstrap\ActiveForm;
                     'placeholder' => 'Choose Employee'
                 ]
             ]
-        )->label(false);?>
+        )->label(false); ?>
 
-    <?= $form->field($model, 'date', [
-        'inputOptions' => ['placeholder' => Yii::t('app', 'Date')],
-    ])->textInput() ?>
-
-    <?= $form->field($model, 'time', [
-        'inputOptions' => [
-                'placeholder' => Yii::t('app', 'Time'),
-                'class' => 'ipt-clock'
-        ],
-    ])->textInput() ?>
-
-    <?= $form->field($model, 'is_late', [
-        'inputOptions' => ['placeholder' => Yii::t('app', 'Is late?')],
-    ])->textInput() ?>
+        <?= $form->field($model, 'date', [
+            'inputOptions' => ['placeholder' => Yii::t('app', 'Date')],
+        ])->textInput() ?>
 
 
-    <?php ActiveForm::end(); ?>
-</div>
+        <?=$form->field($model, 'time')->widget(TimePicker::class, [
+            //'language' => 'fi',
+            'pluginOptions' => [
+                'showSeconds' => true
+            ]
+        ]); ?>
 
-<?php $this->registerJs(<<<JS
+        <?= $form->field($model, 'is_late', [
+            'inputOptions' => ['placeholder' => Yii::t('app', 'Is late?')],
+        ])->textInput() ?>
 
-   $('.ipt-clock').datetimepicker({
-                format: 'LT'
-            });
-JS
-);
+
+        <?php ActiveForm::end(); ?>
+    </div>
