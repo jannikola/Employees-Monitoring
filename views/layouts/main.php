@@ -11,7 +11,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
-$this->title = 'Employee Control';
+$this->title = 'Employee Monitoringv';
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -27,7 +27,7 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<?php Yii::$app->name = 'Employee Control'; ?>
+<?php Yii::$app->name = 'Employee Monitoring'; ?>
 <div class="wrap">
     <?php
     NavBar::begin([

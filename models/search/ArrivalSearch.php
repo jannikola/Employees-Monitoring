@@ -29,6 +29,11 @@ class ArrivalSearch extends Arrival
             'pagination' => [
                 'pageSizeLimit' => [10, 10]
             ],
+            'sort' => [
+                'defaultOrder' => [
+                    "date" => SORT_DESC
+                ],
+            ]
         ]);
 
         $this->load($params);

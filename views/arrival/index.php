@@ -32,8 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
     'dataProvider' => $dataProvider,
     'columns' => [
         [
-            'attribute' => 'employee_id',
-            'label' => Yii::t('app', 'Name'),
+            'attribute' => 'employee.first_name',
+            'label' => Yii::t('app', 'Employee'),
         ],
         [
             'attribute' => 'date',
