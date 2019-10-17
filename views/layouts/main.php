@@ -26,7 +26,7 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-
+<?php Yii::$app->name = 'Employee Control'; ?>
 <div class="wrap">
     <?php
     NavBar::begin([
@@ -70,9 +70,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <a class="pull-right" href="mailto:jannikola93@yahoo.com" target="_top">&nbsp;Nikola Jankovic</a><p class="pull-right">Powered by:</p>
     </div>
 </footer>
 <?= Modal::widget(['id' => 'main-modal', 'size' => Modal::SIZE_DEFAULT]); ?>
