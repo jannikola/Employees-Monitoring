@@ -42,6 +42,9 @@ $this->params['breadcrumbs'][] = $this->title;
         [
             'attribute' => 'time',
             'label' => Yii::t('app', 'Time'),
+            'value' => function(Arrival $model) {
+                return substr_replace($model->time,"",-3);
+            },
         ],
         [
             'attribute' => 'is_late',
@@ -71,7 +74,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             'data-pjax' => '0',
                             'data-pjax-id' => $pjaxId,
                             'data-json-response' => '1',
-                            'data-method' => 'post',
                             'class' => 'btn btn-sm delete-button btn-control-confirm',
                             'data-toggle' => 'tooltip',
                             'data-placement' => 'top'
