@@ -35,10 +35,6 @@ use yii\bootstrap\ActiveForm;
             ]
         ]); ?>
 
-        <?= $form->field($model, 'is_late', [
-            'inputOptions' => ['placeholder' => Yii::t('app', 'Is late?')],
-        ])->textInput() ?>
-
 
         <?php ActiveForm::end(); ?>
     </div>

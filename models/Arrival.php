@@ -26,6 +26,8 @@ use app\components\orm\ActiveRecord;
  */
 class Arrival extends ActiveRecord
 {
+    const DEADLINE = '08:45';
+
     public static function tableName()
     {
         return 'arrival';
@@ -34,7 +36,8 @@ class Arrival extends ActiveRecord
     public function rules()
     {
         return [
-            [['employee_id', 'date', 'time', 'is_late'], 'required'],
+            [['employee_id', 'time'], 'required'],
+            [['date', 'is_late'], 'safe'],
             [['created_at', 'created_by', 'updated_at', 'updated_by', 'is_deleted'], 'integer'],
         ];
     }
@@ -44,10 +47,18 @@ class Arrival extends ActiveRecord
         return $this->hasOne(Employee::class, ['id' => 'employee_id']);
     }
 
-
-    public function init()
+    public function beforeSave($insert)
     {
-        $this->date = date('Y-m-d');
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+
+        $this->date = date("Y-m-d");
+        $onTime = $this->date . ' ' . self::DEADLINE;
+        $arrivedAt = date('Y-m-d') . ' ' . $this->time;
+        $onTime < $arrivedAt ? $this->is_late = 1 : $this->is_late = 0;
+
+        return true;
     }
 
 
