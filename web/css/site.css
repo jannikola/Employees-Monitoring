@@ -3,6 +3,10 @@ body {
     height: 100%;
 }
 
+.bootstrap-timepicker {
+    width: 250px;
+}
+
 .modal-header > h4 {
     display: inline !important;
 }
