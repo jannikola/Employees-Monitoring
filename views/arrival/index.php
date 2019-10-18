@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'data-placement' => 'top'
                         ]);
                     },
-                    'delete' => function ($url, $model) use ($pjaxId) {
+                    'delete' => function ($url, Arrival $model) use ($pjaxId) {
                         $url = Url::to(['arrival/delete', 'id' => $model->id]);
                         return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
                             'title' => 'Delete',
@@ -75,6 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'data-pjax-id' => $pjaxId,
                             'data-json-response' => '1',
                             'class' => 'btn btn-sm delete-button btn-control-confirm',
+                            'data-msg' => Yii::t('app', 'Do you want to delete arrival for {:name}?', [':name' => $model->employee ? $model->employee->getFullName() : 'employee']),
                             'data-toggle' => 'tooltip',
                             'data-placement' => 'top'
                         ]);

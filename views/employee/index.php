@@ -65,6 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'data-pjax-id' => $pjaxId,
                             'data-json-response' => '1',
                             'class' => 'btn btn-sm delete-button btn-control-confirm btn-confirm',
+                            'data-msg' => Yii::t('app', 'Do you want to delete {:name}?', [':name' => $model->employee->getFullName()]),
                             'data-toggle' => 'tooltip',
                             'data-placement' => 'top'
                         ]);
