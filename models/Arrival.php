@@ -53,7 +53,7 @@ class Arrival extends ActiveRecord
             return false;
         }
 
-        if ($this->isNewRecord) {
+        if ($insert) {
             $this->date = date("Y-m-d");
         }
         $onTime = $this->date . ' ' . self::DEADLINE;
