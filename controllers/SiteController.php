@@ -94,7 +94,7 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-
+        Yii::$app->homeUrl = '/site/login';
         return $this->goHome();
     }
 
