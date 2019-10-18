@@ -11,11 +11,11 @@ use yii\bootstrap\ActiveForm; ?>
     ]); ?>
 
     <?= $form->field($model, 'first_name', [
-        'inputOptions' => ['placeholder' => Yii::t('app', 'Add name')],
+        'inputOptions' => ['placeholder' => Yii::t('app', 'First name')],
     ])->textInput() ?>
 
     <?= $form->field($model, 'last_name', [
-        'inputOptions' => ['placeholder' => Yii::t('app', 'Add last name')],
+        'inputOptions' => ['placeholder' => Yii::t('app', 'Last name')],
     ])->textInput() ?>
 
 
