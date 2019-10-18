@@ -24,10 +24,14 @@ AppAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 </head>
 <body>
 <?php $this->beginBody() ?>
-<?php Yii::$app->name = 'Employee Monitoring'; ?>
+<?php
+Yii::$app->name = 'Employee Monitoring';
+Yii::$app->homeUrl = '/employee/index';
+?>
 <div class="wrap">
     <?php
     NavBar::begin([
@@ -40,7 +44,6 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Employees', 'url' => ['/employee/index'], 'visible' => !Yii::$app->user->isGuest],
             ['label' => 'Arrivals', 'url' => ['/arrival/index'], 'visible' => !Yii::$app->user->isGuest],
             Yii::$app->user->isGuest ? (
@@ -71,7 +74,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <a class="pull-right" href="mailto:jannikola93@yahoo.com" target="_top">&nbsp;Nikola Jankovic</a><p class="pull-right">Powered by:</p>
+        <a class="pull-right" href="https://github.com/jannikola" target="_blank">&nbsp;Nikola Jankovic</a><p class="pull-right">Powered by</p>
     </div>
 </footer>
 <?= Modal::widget(['id' => 'main-modal', 'size' => Modal::SIZE_DEFAULT]); ?>
