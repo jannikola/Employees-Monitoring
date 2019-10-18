@@ -3,6 +3,10 @@ body {
     height: 100%;
 }
 
+.select2-container {
+    width: 250px !important;
+}
+
 .bootstrap-timepicker {
     width: 250px;
 }
