@@ -31,7 +31,7 @@ class ArrivalSearch extends Arrival
             ],
             'sort' => [
                 'defaultOrder' => [
-                    "date" => SORT_DESC
+                    "id" => SORT_DESC
                 ],
             ]
         ]);
