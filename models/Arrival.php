@@ -53,7 +53,9 @@ class Arrival extends ActiveRecord
             return false;
         }
 
-        $this->date = date("Y-m-d");
+        if ($this->isNewRecord) {
+            $this->date = date("Y-m-d");
+        }
         $onTime = $this->date . ' ' . self::DEADLINE;
         $arrivedAt = date('Y-m-d') . ' ' . $this->time;
         $onTime < $arrivedAt ? $this->is_late = 1 : $this->is_late = 0;
