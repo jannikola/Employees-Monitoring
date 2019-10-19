@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         [
             'attribute' => 'is_late',
-            'label' => Yii::t('app', 'Is late'),
+            'label' => Yii::t('app', 'Late'),
             'value' => function(Arrival $model) {
                 return $model->is_late ? 'Yes' : 'No';
             },
