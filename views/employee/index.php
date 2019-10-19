@@ -29,6 +29,7 @@ $pjaxId = 'employee-pjax-id';
     'pjaxId' => $pjaxId,
     'showFooter' => true,
     'dataProvider' => $dataProvider,
+    'filterModel' => $searchModel,
     'columns' => [
         [
             'attribute' => 'first_name',

@@ -2,6 +2,9 @@ html,
 body {
     height: 100%;
 }
+.display-none {
+    display: none;
+}
 
 .select2-container {
     width: 250px !important;

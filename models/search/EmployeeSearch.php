@@ -62,6 +62,9 @@ class EmployeeSearch extends Employee
 
         $query->groupBy(['employee.id', 'employee.first_name', 'employee.last_name']);
 
+        $query->andFilterWhere(['like', 'first_name', $this->first_name]);
+        $query->andFilterWhere(['like', 'last_name', $this->last_name]);
+
         return $dataProvider;
     }
 }

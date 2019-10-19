@@ -12,7 +12,6 @@
 use app\components\grid\GridView;
 use app\helpers\TimeHelper;
 use app\models\Arrival;
-use janisto\timepicker\TimePicker;
 use yii\bootstrap\Html;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
@@ -31,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
     'pjaxId' => $pjaxId,
     'showFooter' => true,
     'dataProvider' => $dataProvider,
+    'filterModel' => $searchModel,
     'columns' => [
         [
             'attribute' => 'employee_id',
@@ -42,7 +42,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'label' => Yii::t('app', 'Date'),
             'value' => function (Arrival $model) {
                 return \app\helpers\TimeHelper::formatSqlDateToLocalDate($model->date);
-            }
+            },
+            'filterInputOptions' => [
+                'class' => 'display-none',
+            ],
         ],
         [
             'attribute' => 'time',
@@ -50,6 +53,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'value' => function(Arrival $model) {
                 return TimeHelper::formatTimeToShortTime($model->time);
             },
+            'filterInputOptions' => [
+                'class' => 'display-none',
+            ],
         ],
         [
             'attribute' => 'is_late',
@@ -57,6 +63,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'value' => function(Arrival $model) {
                 return $model->is_late ? 'Yes' : 'No';
             },
+            'filterInputOptions' => [
+                'class' => 'display-none',
+            ],
         ],
         ['class' => 'yii\grid\ActionColumn',
             'template' => '<div class="pull-right">{update}{delete}</div>',

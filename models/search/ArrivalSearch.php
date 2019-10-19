@@ -16,7 +16,7 @@ class ArrivalSearch extends Arrival
     {
         return [
             [['id', 'is_deleted'], 'integer'],
-            [['date', 'time', 'employee_id', 'is_late', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'safe'],
+            [['employee_id', 'date', 'time', 'employee_id', 'is_late', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'safe'],
         ];
     }
 
@@ -52,6 +52,9 @@ class ArrivalSearch extends Arrival
         if (!$this->validate()) {
             return $dataProvider;
         }
+
+        $query->andFilterWhere(['like', 'employee.first_name', $this->employee_id]);
+        $query->orFilterWhere(['like', 'employee.last_name', $this->employee_id]);
 
         return $dataProvider;
     }
