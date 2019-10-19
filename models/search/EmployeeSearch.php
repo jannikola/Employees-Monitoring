@@ -24,7 +24,7 @@ class EmployeeSearch extends Employee
     public function search($params)
     {
         $query = Employee::find()
-            ->select(['employee.id', 'first_name', 'last_name', 'late_arrival_count' => new Expression("COUNT(arrival.is_late)")])
+            ->select(['employee.id', 'first_name', 'last_name', 'late_arrival_count' => new Expression("SUM(arrival.is_late)")])
             ->joinWith('arrivals');
 
         $dataProvider = new ActiveDataProvider([
