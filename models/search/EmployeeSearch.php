@@ -47,8 +47,8 @@ class EmployeeSearch extends Employee
                         'desc' => ['last_name' => SORT_DESC]
                     ],
                     'late_arrival_count' => [
-                        'asc' => ["COUNT(arrival.is_late)" => SORT_ASC],
-                        'desc' => ["COUNT(arrival.is_late)" => SORT_DESC]
+                        'asc' => ["SUM(arrival.is_late)" => SORT_ASC],
+                        'desc' => ["SUM(arrival.is_late)" => SORT_DESC]
                     ]
                 ]
             ]
