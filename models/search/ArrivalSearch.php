@@ -22,7 +22,8 @@ class ArrivalSearch extends Arrival
 
     public function search($params)
     {
-        $query = Arrival::find();
+        $query = Arrival::find()
+            ->innerJoinWith('employee');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -33,6 +34,16 @@ class ArrivalSearch extends Arrival
                 'defaultOrder' => [
                     "id" => SORT_DESC
                 ],
+                'attributes' => [
+                    'id',
+                    'date',
+                    'time',
+                    'employee_id' => [
+                        'asc' => ['employee.first_name' => SORT_ASC, 'employee.last_name' => SORT_ASC],
+                        'desc' => ['employee.first_name' => SORT_DESC, 'employee.last_name' => SORT_DESC],
+                    ],
+                    'is_late'
+                ]
             ]
         ]);
 

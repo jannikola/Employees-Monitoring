@@ -11,14 +11,13 @@
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 use app\components\grid\GridView;
-use app\models\Arrival;
 use yii\bootstrap\Html;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
+use app\models\Employee;
 
 $pjaxId = 'employee-pjax-id';
-$this->title = 'Employees';
-$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 
 <?= Html::a('New',
@@ -32,23 +31,23 @@ $this->params['breadcrumbs'][] = $this->title;
     'dataProvider' => $dataProvider,
     'columns' => [
         [
-            'attribute' => 'employee.first_name',
+            'attribute' => 'first_name',
             'label' => Yii::t('app', 'First Name'),
         ],
         [
-            'attribute' => 'employee.last_name',
+            'attribute' => 'last_name',
             'label' => Yii::t('app', 'Last Name'),
         ],
         [
-            'attribute' => 'is_late',
+            'attribute' => 'late_arrival_count',
             'label' => Yii::t('app', 'Late Arrivals')
         ],
         ['class' => 'yii\grid\ActionColumn',
             'template' => '<div class="pull-right">{update}{delete}</div>',
             'buttons' =>
                 [
-                    'update' => function ($url, Arrival $model) {
-                        $url = Url::to(['employee/update', 'id' => $model->employee_id]);
+                    'update' => function ($url, \app\models\Employee $model) {
+                        $url = Url::to(['employee/update', 'id' => $model->id]);
                         return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
                             'title' => 'Update',
                             'data-pjax' => '0',
@@ -57,15 +56,15 @@ $this->params['breadcrumbs'][] = $this->title;
                             'data-placement' => 'top'
                         ]);
                     },
-                    'delete' => function ($url, Arrival $model) use ($pjaxId) {
-                        $url = Url::to(['employee/delete', 'id' => $model->employee_id]);
+                    'delete' => function ($url, Employee $model) use ($pjaxId) {
+                        $url = Url::to(['employee/delete', 'id' => $model->id]);
                         return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
                             'title' => 'Delete',
                             'data-pjax' => '0',
                             'data-pjax-id' => $pjaxId,
                             'data-json-response' => '1',
-                            'class' => 'btn btn-sm delete-button btn-control-confirm btn-confirm',
-                            'data-msg' => Yii::t('app', 'Do you want to delete {:name}?', [':name' => $model->employee->getFullName()]),
+                            'data-msg' => Yii::t('app', 'Do you want to delete {:name}?', [':name' => $model->getFullName()]),
+                            'class' => 'btn btn-sm btn-icon-only rounded-circle btn-control-confirm',
                             'data-toggle' => 'tooltip',
                             'data-placement' => 'top'
                         ]);
@@ -77,4 +76,5 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <?php Pjax::end(); ?>
+
 

@@ -32,12 +32,16 @@ $this->params['breadcrumbs'][] = $this->title;
     'dataProvider' => $dataProvider,
     'columns' => [
         [
-            'attribute' => 'employee.first_name',
-            'label' => Yii::t('app', 'Employee'),
+            'attribute' => 'employee_id',
+            'value' => 'employee.fullName',
+            'label' => Yii::t('app', 'Employee')
         ],
         [
             'attribute' => 'date',
             'label' => Yii::t('app', 'Date'),
+            'value' => function (Arrival $model) {
+                return \app\helpers\TimeHelper::formatSqlDateToLocalDate($model->date);
+            }
         ],
         [
             'attribute' => 'time',

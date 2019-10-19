@@ -11,7 +11,6 @@ use yii\db\Expression;
  * Created by Nikola Jankovic.
  * email: jannikola@gmail.com
  */
-
 class EmployeeSearch extends Employee
 {
     public function rules()
@@ -24,9 +23,9 @@ class EmployeeSearch extends Employee
 
     public function search($params)
     {
-        $query = Arrival::find()
-            ->select(['employee_id', 'is_late' => new Expression("COUNT(is_late)")])
-            ->innerJoinWith('employee');
+        $query = Employee::find()
+            ->select(['employee.id', 'first_name', 'last_name', 'late_arrival_count' => new Expression("COUNT(arrival.is_late)")])
+            ->joinWith('arrivals');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -35,21 +34,21 @@ class EmployeeSearch extends Employee
             ],
             'sort' => [
                 'defaultOrder' => [
-                    "is_late" => SORT_DESC
+                    "late_arrival_count" => SORT_DESC
                 ],
                 'attributes' => [
                     'id',
-                    'employee.first_name' => [
-                        'asc' => ['employee.first_name' => SORT_ASC],
-                        'desc' => ['employee.first_name' => SORT_DESC]
+                    'first_name' => [
+                        'asc' => ['first_name' => SORT_ASC],
+                        'desc' => ['first_name' => SORT_DESC]
                     ],
-                    'employee.last_name' => [
-                        'asc' => ['employee.last_name' => SORT_ASC],
-                        'desc' => ['employee.last_name' => SORT_DESC]
+                    'last_name' => [
+                        'asc' => ['last_name' => SORT_ASC],
+                        'desc' => ['last_name' => SORT_DESC]
                     ],
-                    'is_late' => [
-                        'asc' => ["COUNT(is_late)" => SORT_ASC],
-                        'desc' => ["COUNT(is_late)" => SORT_DESC]
+                    'late_arrival_count' => [
+                        'asc' => ["COUNT(arrival.is_late)" => SORT_ASC],
+                        'desc' => ["COUNT(arrival.is_late)" => SORT_DESC]
                     ]
                 ]
             ]
@@ -61,7 +60,7 @@ class EmployeeSearch extends Employee
             return $dataProvider;
         }
 
-        $query->groupBy(['employee_id']);
+        $query->groupBy(['employee.id', 'employee.first_name', 'employee.last_name']);
 
         return $dataProvider;
     }
