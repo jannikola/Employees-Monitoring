@@ -10,6 +10,7 @@
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 use app\components\grid\GridView;
+use app\helpers\TimeHelper;
 use app\models\Arrival;
 use janisto\timepicker\TimePicker;
 use yii\bootstrap\Html;
@@ -47,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'attribute' => 'time',
             'label' => Yii::t('app', 'Time'),
             'value' => function(Arrival $model) {
-                return substr_replace($model->time,"",-3);
+                return TimeHelper::formatTimeToShortTime($model->time);
             },
         ],
         [

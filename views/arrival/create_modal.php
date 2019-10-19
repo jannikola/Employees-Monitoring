@@ -8,7 +8,7 @@ use app\widgets\modal\ModalContent;
 use yii\helpers\Html;
 
 $this->title = Yii::t('app', 'Adding new arrival');
-
+$model->time = \app\helpers\TimeHelper::createDateObjectFromString()->format('H:i');
 ?>
 
 <div>
