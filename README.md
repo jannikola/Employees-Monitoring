@@ -7,6 +7,7 @@ To install development follow steps below:
 
 1. Clone this project.
 2. Execute `vagrant up`
+3. Login credentials : username / password : admin / admin
 
 DIRECTORY STRUCTURE
 -------------------
